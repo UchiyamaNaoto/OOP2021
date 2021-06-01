@@ -26,5 +26,11 @@ namespace Exercise1 {
                     song.Title, song.ArtistName, TimeSpan.FromSeconds(song.Length));
             }
         }
+        /*
+           @"{0}, {1} {2:m\:ss}" について
+           {} の中で、:は特別な意味を持っている。そのため、: を 文字':'として表示させるために
+           \: としている。なお、\: をエスケープシーケンスと認識させないように、@を先頭に付加し、
+           逐語的リテラル文字列にしている。     
+        */
     }
 }

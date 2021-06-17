@@ -35,9 +35,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise1", "Chapter05\Exer
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapter05", "Chapter05", "{9223A0FB-0077-4CD7-A85F-83431CD1B094}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test01", "..\..\..\Desktop\TestProject\Test01\Test01.csproj", "{2BFACDC3-F44D-4199-8498-F5C3C4AC0335}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test01", "TestProject\Test01\Test01.csproj", "{2BFACDC3-F44D-4199-8498-F5C3C4AC0335}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test02", "..\..\..\Desktop\TestProject\Test02\Test02.csproj", "{E461C0A8-8900-485C-B520-E929BA33F712}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test02", "TestProject\Test02\Test02.csproj", "{E461C0A8-8900-485C-B520-E929BA33F712}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

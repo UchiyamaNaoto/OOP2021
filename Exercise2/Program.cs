@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Exercise2 {
+namespace Exercise1 {
     class Program {
         static void Main(string[] args) {
             if (args.Length >= 1 && args[0] == "-toi") {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Exercise2 {
+namespace Exercise1 {
     // インチとメートルの単位変換クラス(静的クラス)
     public static class InchConverter {
         private const double ratio = 0.0254;

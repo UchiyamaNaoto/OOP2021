@@ -12,7 +12,7 @@ namespace Test01 {
 
         // 得点データを読み込み、Studentオブジェクトのリストを返す
         private static IEnumerable<Student> ReadScore(string filePath) {
-            var sales = new List<Student>();
+            var students = new List<Student>();
             string[] lines = File.ReadAllLines(filePath);
             foreach (var line in lines) {
                 var items = line.Split(',');
@@ -21,9 +21,9 @@ namespace Test01 {
                     Subject = items[1],
                     Score = int.Parse(items[2])
                 };
-                sales.Add(sale);
+                students.Add(sale);
             }
-            return sales;
+            return students;
         }
 
         // 科目別合計点を求める
@@ -37,7 +37,5 @@ namespace Test01 {
             }
             return dict;
         }
-
-
     }
 }

@@ -22,9 +22,6 @@ namespace Exercise1 {
             #endregion
 #endif
 
-
-
-
         }
     }
 }

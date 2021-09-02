@@ -25,5 +25,22 @@ namespace Sample0823
             Result.Text = Math.Pow(num1, num2).ToString();
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var data = getData();
+            foreach (int item in data)
+            {
+                textBox1.Text += item + " ";
+            }
+        }
+
+        public IEnumerable<int> getData()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                yield return i;
+            }
+        }
     }
 }

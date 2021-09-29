@@ -129,6 +129,7 @@ namespace CarReportSystem {
                                                                 tbReport.Text,
                                                                 pbPicture.Image
                                                                 );
+
         }
     }
 }

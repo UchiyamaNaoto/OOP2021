@@ -82,7 +82,7 @@ namespace SendMail
             // 
             this.tbPass.Location = new System.Drawing.Point(324, 50);
             this.tbPass.Name = "tbPass";
-            this.tbPass.PasswordChar = '＊';
+            this.tbPass.PasswordChar = '*';
             this.tbPass.Size = new System.Drawing.Size(169, 19);
             this.tbPass.TabIndex = 1;
             // 
@@ -223,6 +223,7 @@ namespace SendMail
             this.Controls.Add(this.groupBox1);
             this.Name = "ConfigForm";
             this.Text = "ConfigForm";
+            this.Load += new System.EventHandler(this.ConfigForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

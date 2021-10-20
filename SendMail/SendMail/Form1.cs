@@ -6,20 +6,22 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace SendMail
 {
     public partial class Form1 : Form
     {
+        //設定画面
+        private ConfigForm configForm = new ConfigForm();
 
-        //private ConfigForm configform = new ConfigForm();
+        //設定情報
+        private Settings settings = Settings.getInstance();
 
-        private Settings setting = Settings.getInstance();
-
-        SmtpClient smtpClient = null;
         public Form1()
         {
             InitializeComponent();
@@ -27,25 +29,30 @@ namespace SendMail
 
         private void btSend_Click(object sender, EventArgs e)
         {
-            btSend.Enabled = false;
+            if (!Settings.Set)
+            {
+                MessageBox.Show("送信情報を設定してください");
+                return;
+            }
+
             try
             {
                 //メール送信のためのインスタンスを生成
                 MailMessage mailMessage = new MailMessage();
                 //差出人アドレス
-                mailMessage.From = new MailAddress("ojsinfosys01@gmail.com");
+                mailMessage.From = new MailAddress(settings.MailAddr);
                 //宛先（To）
                 mailMessage.To.Add(tbTo.Text);
-                //宛先（Cc）
-                //if (tbCc.Text != "")
-                //{
-                //    mailMessage.CC.Add(tbCc.Text);
-                //}
-                ////宛先（Bcc）
-                //if (tbBcc.Text != "")
-                //{
-                //    mailMessage.Bcc.Add(tbBcc.Text);
-                //}
+
+                if(tbCc.Text != "")
+                {
+                    mailMessage.CC.Add(tbCc.Text);
+                }
+                if (tbBcc.Text != "")
+                {
+                    mailMessage.Bcc.Add(tbBcc.Text);
+                }
+
                 //件名（タイトル）
                 mailMessage.Subject = tbTitle.Text;
                 //本文
@@ -59,16 +66,21 @@ namespace SendMail
 
                 }
                 //メール送信のための認証情報を設定（ユーザー名、パスワード）
-                if (smtpClient.Credentials == null)
-                {
-                    smtpClient.Credentials
-                      = new NetworkCredential("ojsinfosys01@gmail.com", "Infosys2021");
-                }
-                smtpClient.Host = "smtp.gmail.com";
-                smtpClient.Port = 587;
-                smtpClient.EnableSsl = true;
-                smtpClient.SendAsync(mailMessage, mailMessage);
+                smtpClient.Credentials 
+                    = new NetworkCredential(settings.MailAddr, settings.Pass);
+                smtpClient.Host = settings.Host;
+                smtpClient.Port = settings.Port;
+                smtpClient.EnableSsl = settings.Ssl;
 
+                //smtpClient.Send(mailMessage);   //非同期でない場合
+
+                //送信完了時に呼ばれるイベントハンドラの登録
+                smtpClient.SendCompleted += SmtpClient_SendCompleted;
+                //smtpClient.SendCompleted += new　SendCompletedEventHandler(SmtpClient_SendCompleted);　//古い書き方
+
+                string userState = "SendMail";
+                smtpClient.SendAsync(mailMessage, userState);
+                                
             }
             catch (Exception ex)
             {
@@ -76,9 +88,9 @@ namespace SendMail
             }
         }
 
+        //送信が完了すると呼ばれるコールバックメソッド
         private void SmtpClient_SendCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            MailMessage msg = (MailMessage)e.UserState;
             if (e.Error != null)
             {
                 MessageBox.Show(e.Error.Message);
@@ -87,16 +99,26 @@ namespace SendMail
             {
                 MessageBox.Show("送信完了");
             }
-            btSend.Enabled = true;
+            
         }
 
-        //送信終了すると呼ばれるメソッド
-
-
-        private void button1_Click(object sender, EventArgs e)
+        private void btConfig_Click(object sender, EventArgs e)
         {
-            //configform.ShowDialog();
+            configForm.ShowDialog();
+        }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            //起動時に送信情報が未設定の場合設定画面を表示する
+            if (!Settings.Set)
+            {
+                configForm.ShowDialog();
+            }                
+        }
+
+        private void 終了XToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -14,6 +14,12 @@ namespace SendMail
 {
     public partial class Form1 : Form
     {
+
+        //private ConfigForm configform = new ConfigForm();
+
+        private Settings setting = Settings.getInstance();
+
+        SmtpClient smtpClient = null;
         public Form1()
         {
             InitializeComponent();
@@ -21,6 +27,7 @@ namespace SendMail
 
         private void btSend_Click(object sender, EventArgs e)
         {
+            btSend.Enabled = false;
             try
             {
                 //メール送信のためのインスタンスを生成
@@ -29,27 +36,67 @@ namespace SendMail
                 mailMessage.From = new MailAddress("ojsinfosys01@gmail.com");
                 //宛先（To）
                 mailMessage.To.Add(tbTo.Text);
+                //宛先（Cc）
+                //if (tbCc.Text != "")
+                //{
+                //    mailMessage.CC.Add(tbCc.Text);
+                //}
+                ////宛先（Bcc）
+                //if (tbBcc.Text != "")
+                //{
+                //    mailMessage.Bcc.Add(tbBcc.Text);
+                //}
                 //件名（タイトル）
                 mailMessage.Subject = tbTitle.Text;
                 //本文
                 mailMessage.Body = tbMessage.Text;
 
                 //SMTPを使ってメールを送信する
-                SmtpClient smtpClient = new SmtpClient();
+                if (smtpClient == null)
+                {
+                    smtpClient = new SmtpClient();
+                    smtpClient.SendCompleted += SmtpClient_SendCompleted;
+
+                }
                 //メール送信のための認証情報を設定（ユーザー名、パスワード）
-                smtpClient.Credentials 
-                    = new NetworkCredential("ojsinfosys01@gmail.com", "Infosys2021");
+                if (smtpClient.Credentials == null)
+                {
+                    smtpClient.Credentials
+                      = new NetworkCredential("ojsinfosys01@gmail.com", "Infosys2021");
+                }
                 smtpClient.Host = "smtp.gmail.com";
                 smtpClient.Port = 587;
                 smtpClient.EnableSsl = true;
-                smtpClient.Send(mailMessage);
+                smtpClient.SendAsync(mailMessage, mailMessage);
 
-                MessageBox.Show("送信完了");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void SmtpClient_SendCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            MailMessage msg = (MailMessage)e.UserState;
+            if (e.Error != null)
+            {
+                MessageBox.Show(e.Error.Message);
+            }
+            else
+            {
+                MessageBox.Show("送信完了");
+            }
+            btSend.Enabled = true;
+        }
+
+        //送信終了すると呼ばれるメソッド
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //configform.ShowDialog();
+
         }
     }
 }

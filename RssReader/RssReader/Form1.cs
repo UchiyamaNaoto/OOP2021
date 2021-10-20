@@ -30,7 +30,7 @@ namespace RssReader
         {
             using (var wc = new WebClient())
             {
-                wc.Headers.Add("Content-type", "charset=UTF-8");
+                //wc.Headers.Add("Content-type", "charset=UTF-8");
 
                 var stream = wc.OpenRead(uri);
                 XDocument xdoc = XDocument.Load(stream);
@@ -52,7 +52,17 @@ namespace RssReader
         private void lbTitles_Click(object sender, EventArgs e)
         {
             string link = (items.ToArray())[lbTitles.SelectedIndex].Link; //配列へ変換して[ ]でアクセス
-            wbBrowser.Url = new Uri(link);
+            //wbBrowser.url = new Uri(link);
+
+            lbDescription.Text = "概要\n";
+            lbDescription.Text += (items.ToArray())[lbTitles.SelectedIndex].Description;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //新しいFormへ表示するリンク先を渡す処理を追加
+            var wbForm = new Form2((items.ToArray())[lbTitles.SelectedIndex].Link);//表示したいURLを渡す
+            wbForm.Show();
         }
     }
 }

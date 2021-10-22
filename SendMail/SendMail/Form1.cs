@@ -21,7 +21,7 @@ namespace SendMail
 
         //設定情報
         private Settings settings = Settings.getInstance();
-
+        private SmtpClient smtpClient = null;
         public Form1()
         {
             InitializeComponent();

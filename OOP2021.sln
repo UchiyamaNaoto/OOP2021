@@ -111,9 +111,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SendMail", "SendMail", "{79
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Section04_Json", "Chapter14\Section04_Json\Section04_Json.csproj", "{F3751216-72B9-4309-92B1-376139D7AFA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBook", "..\ADO.NET\AddressBook\AddressBook.csproj", "{FC583801-E4CD-48A9-9EEE-35D358289971}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ADO.NET", "ADO.NET", "{31D29D96-364A-4D31-BD97-06F3EA074B60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBook", "ADO.NET\AddressBook\AddressBook.csproj", "{FC583801-E4CD-48A9-9EEE-35D358289971}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -37,67 +37,22 @@ namespace SampleEntityFramework
 
         private static void Exercise13_1_2()
         {
-            using (var db = new BooksDbContext())
-            {
-                foreach (var book in db.Books.OrderBy(b => b.Author.Name))
-                {
-                    Console.WriteLine("{0} {1} {2}({3:yyyy/MM/dd})",
-                             book.Title, book.PublshedYear,
-                             book.Author.Name, book.Author.Birthday);
-                }
-            }
+
         }
 
         private static void Exercise13_1_3()
         {
-            using (var db = new BooksDbContext())
-            {
-                var books = db.Books
-                              .Where(b => b.Title.Length == db.Books.Max(x => x.Title.Length));
-                foreach (var book in books)
-                {
-                    Console.WriteLine("{0} {1} {2}({3:yyyy/MM/dd})",
-                        book.Title, book.PublshedYear,
-                        book.Author.Name, book.Author.Birthday
-                    );
-                }
-            }
+
         }
 
         private static void Exercise13_1_4()
         {
-            using (var db = new BooksDbContext())
-            {
-                var books = db.Books
-                    .OrderBy(b => b.PublshedYear)
-                    .Take(3);
-                foreach (var book in books)
-                {
-                    Console.WriteLine("{0} {1} {2}({3:yyyy/MM/dd})",
-                        book.Title, book.PublshedYear,
-                        book.Author.Name, book.Author.Birthday);
-                }
-            }
+            
         }
 
         private static void Exercise13_1_5()
         {
-            using (var db = new BooksDbContext())
-            {
-                var authors = db.Authors
-                              .OrderByDescending(a => a.Birthday);
-                foreach (var author in authors)
-                {
-                    Console.WriteLine("{0} {1:yyyy/MM}", author.Name, author.Birthday);
-                    foreach (var book in author.Books)
-                    {
-                        Console.WriteLine("  {0} {1}",
-                            book.Title, book.PublshedYear,
-                            book.Author.Name, book.Author.Birthday);
-                    }
-                    Console.WriteLine();
-                }
-            }
+            
         }
 
         #region P321～343
@@ -122,7 +77,7 @@ namespace SampleEntityFramework
             using (var db = new BooksDbContext())
             {
                 var book = db.Books.Single(x => x.Title == "銀河鉄道の夜");
-                book.PublshedYear = 2016;
+                book.PublishedYear = 2016;
                 db.SaveChanges();
             }
         }
@@ -135,7 +90,7 @@ namespace SampleEntityFramework
                 var book1 = new Book
                 {
                     Title = "坊ちゃん",
-                    PublshedYear = 2003,
+                    PublishedYear = 2003,
                     Author = new Author
                     {
                         Birthday = new DateTime(1867, 2, 9),
@@ -148,7 +103,7 @@ namespace SampleEntityFramework
                 var book2 = new Book
                 {
                     Title = "人間失格",
-                    PublshedYear = 1990,
+                    PublishedYear = 1990,
                     Author = new Author
                     {
                         Birthday = new DateTime(1909, 6, 19),
@@ -176,7 +131,7 @@ namespace SampleEntityFramework
             var books = GetBooks();
             foreach (var book in books)
             {
-                Console.WriteLine($"{book.Title}{book.PublshedYear}");
+                Console.WriteLine($"{book.Title}{book.PublishedYear}");
             }
             Console.ReadLine(); //F5で実行後、一時停止させる
         }
@@ -213,7 +168,7 @@ namespace SampleEntityFramework
                 var book1 = new Book
                 {
                     Title = "みだれ髪",
-                    PublshedYear = 2000,
+                    PublishedYear = 2000,
                     Author = author1,
                 };
                 db.Books.Add(book1);
@@ -222,7 +177,7 @@ namespace SampleEntityFramework
                 var book2 = new Book
                 {
                     Title = "銀河鉄道の夜",
-                    PublshedYear = 1989,
+                    PublishedYear = 1989,
                     Author = author2,
                 };
                 db.Books.Add(book2);

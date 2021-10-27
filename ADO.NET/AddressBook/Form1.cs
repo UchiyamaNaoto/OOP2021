@@ -73,8 +73,8 @@ namespace AddressBook
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var day = dateTimePicker1.Value.ToString("yyyy/MMM/dd");
-            this.personTableAdapter.FillByBirthday(this.infosys202100DataSet.Person, dateTimePicker1.Value.ToString("yyyy/MMM/dd"));
+//            var day = dateTimePicker1.Value.ToString();//.ToString("yyyy/MMM/dd");
+            this.personTableAdapter.FillByBirthday(this.infosys202100DataSet.Person, dateTimePicker1.Text);
         }
     }
 }

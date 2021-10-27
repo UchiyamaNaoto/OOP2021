@@ -15,8 +15,7 @@ namespace SampleEntityFramework.Models
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
-            //ContextKey = "SampleEntityFramework.Models.BooksDbContext";
-            ContextKey = "Exercise1.Models.BooksDbContext";
+            ContextKey = "SampleEntityFramework.Models.BooksDbContext";
         }
     }
 }

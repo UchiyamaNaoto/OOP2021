@@ -895,8 +895,8 @@ namespace AddressBook.infosys202100DataSetTableAdapters {
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Person] ([Name], [Birthday], [Telephone], [Memo]) VALUES (@Nam" +
-                "e, @Birthday, @Telephone, @Memo);\nSELECT No, Name, Birthday, Telephone, Memo FRO" +
-                "M Person WHERE (No = SCOPE_IDENTITY())";
+                "e, @Birthday, @Telephone, @Memo);\r\nSELECT No, Name, Birthday, Telephone, Memo FR" +
+                "OM Person WHERE (No = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Birthday", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Birthday", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -945,8 +945,9 @@ SELECT No, Name, Birthday, Telephone, Memo FROM Person WHERE (No = @No)";
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@date", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "Birthday", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT                      No, Name, Birthday, Telephone, Memo\nFROM             " +
-                "            Person\nWHERE                       (Name LIKE N\'%\' + @name + N\'%\')";
+            this._commandCollection[2].CommandText = "SELECT                      No, Name, Birthday, Telephone, Memo\r\nFROM            " +
+                "             Person\r\nWHERE                       (Name LIKE N\'%\' + @name + N\'%\')" +
+                "";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }

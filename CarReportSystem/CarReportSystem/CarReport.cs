@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace CarReportSystem {
     [Serializable]
-    public class CarReport {
+    public class CarReport
+    {
         [DisplayName("日付")]
         public DateTime Date { get; set; }  //日付
         [DisplayName("記録者")]
@@ -22,7 +23,8 @@ namespace CarReportSystem {
         public Image Picture { get; set; } //画像
 
         //メーカー
-        public enum MakerGroup {
+        public enum MakerGroup
+        {
             トヨタ,
             日産,
             ホンダ,
@@ -37,7 +39,8 @@ namespace CarReportSystem {
                             MakerGroup maker,
                             string carName,
                             string report,
-                            Image picture) {
+                            Image picture)
+        {
             this.Date = date;
             this.Auther = auther;
             this.Maker = maker;
@@ -45,9 +48,5 @@ namespace CarReportSystem {
             this.Report = report;
             this.Picture = picture;
         }
-
     }
-
-    
-
 }

@@ -385,6 +385,7 @@ namespace CarReportSystem {
             // 
             // carReportDataGridView
             // 
+            this.carReportDataGridView.AllowUserToAddRows = false;
             this.carReportDataGridView.AutoGenerateColumns = false;
             this.carReportDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.carReportDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -403,6 +404,7 @@ namespace CarReportSystem {
             this.carReportDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.carReportDataGridView.Size = new System.Drawing.Size(619, 254);
             this.carReportDataGridView.TabIndex = 22;
+            this.carReportDataGridView.SelectionChanged += new System.EventHandler(this.carReportDataGridView_SelectionChanged);
             // 
             // dataGridViewTextBoxColumn1
             // 

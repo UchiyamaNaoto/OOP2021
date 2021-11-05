@@ -18,7 +18,7 @@ namespace SendMail
     {
         //設定画面
         private ConfigForm configForm = new ConfigForm();
-
+        private SmtpClient smtpClient = null;
         //設定情報
         private Settings settings = Settings.getInstance();
 

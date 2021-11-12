@@ -32,7 +32,7 @@ namespace CarReportSystem {
             外国車,
             その他,
         }
-
+        
         //データ更新用
         public void UpDate(DateTime date,
                             string auther,

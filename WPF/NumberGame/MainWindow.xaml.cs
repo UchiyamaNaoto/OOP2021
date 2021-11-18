@@ -20,30 +20,32 @@ namespace NumberGame
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Random random;
+        private Random  random = new Random();
         private int answerNum;
-        private const int Rows = 10;     //行
-        private const int Columns = 10;  //列
+        private const int Rows = 7;     //行
+        private const int Columns = 7;  //列
 
         private SolidColorBrush selectedButtonColor = new SolidColorBrush(Colors.Yellow);
         private SolidColorBrush hitButtonColor = new SolidColorBrush(Colors.Red);
 
         public MainWindow()
         {
-            InitializeComponent();
-            random = new Random();
-            answerNum = random.Next(Rows * Columns) + 1;
+            InitializeComponent();            
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        //ロード時に一度だけ実行される
+        private void MainDisp_Loaded(object sender, RoutedEventArgs e)
         {
             List<Button> buttons = new List<Button>();
+            //正解を取得
+            answerNum = random.Next(Rows * Columns) + 1;
 
+            //行
             for (int i = 0; i < Rows; i++)
             {
                 grid.RowDefinitions.Add(new RowDefinition());
             }
-            
+            //列
             for (int j = 0; j < Columns; j++)
             {
                 grid.ColumnDefinitions.Add(new ColumnDefinition());
@@ -54,42 +56,30 @@ namespace NumberGame
                 for (int j = 0; j < Columns; j++)
                 {
                     var bt = new Button();
-                    bt.Width = MainDisp.Width/ Columns;
-                    bt.Height = (MainDisp.Height-textDisp.Height) / Rows;
-                    bt.Content = (j + 1) + (i * Columns);
+                    bt.Width = MainForm.Width / Columns;
+                    bt.Height = MainForm.Height/Rows;
+                    
+                    bt.Content = (j + 1) + i * Rows;
+
                     bt.FontSize = 20;
-                    bt.Click += Bt_Click; ;
+                    bt.Click += Bt_Click;
                     Grid.SetRow(bt, i);
                     Grid.SetColumn(bt, j);
-                   
                     buttons.Add(bt);
                 }
             }
             buttons.ForEach(bt => grid.Children.Add(bt));
-            MainDisp.Height += textDisp.Height;
+            MainForm.Height += textDisp.Height + 50;
+
         }
 
         private void Bt_Click(object sender, RoutedEventArgs e)
         {
-            Button clickButton = (Button)sender;
-            int selectNum = (int)clickButton.Content;
-            if (answerNum == selectNum)
-            {
-                textDisp.Text = "あたり！";
-                clickButton.Background = hitButtonColor;
-            }
-            else
-            {
-                if (answerNum < selectNum)
-                {
-                    textDisp.Text = selectNum + "より小さいです。";
-                }
-                else
-                {
-                    textDisp.Text = selectNum + "より大きいです。";
-                }
-                clickButton.Background = selectedButtonColor;
-            }
+            Button selectedButton = (Button)sender;
+            int num = (int)selectedButton.Content;
+
+
+
         }
     }
 }
